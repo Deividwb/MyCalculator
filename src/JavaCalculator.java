@@ -31,8 +31,12 @@ public class JavaCalculator {
         btnOne.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String btnOneText = textDisplay.getText() + btnOne.getText();
-                textDisplay.setText(btnOneText);
+                if (textDisplay.getText().contains(Double.toString(total2)))
+                    textDisplay.setText(btnOne.getText());
+                else {
+                    String buttonOne = textDisplay.getText() + btnOne.getText();
+                    textDisplay.setText(buttonOne);
+                }
             }
         });
         btnTwo.addActionListener(new ActionListener() {
@@ -101,13 +105,13 @@ public class JavaCalculator {
         btnPoint.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(textDisplay.getText().equals("")){
+                if (textDisplay.getText().equals("")) {
                     textDisplay.setText("0.");
-                }else if(textDisplay.getText().contains(".")){
+                } else if (textDisplay.getText().contains(".")) {
                     btnPoint.setEnabled(false);
-                }else {
-                String btnPointText = textDisplay.getText() + btnPoint.getText();
-                textDisplay.setText(btnPointText);
+                } else {
+                    String btnPointText = textDisplay.getText() + btnPoint.getText();
+                    textDisplay.setText(btnPointText);
                 }
                 btnPoint.setEnabled(true);
             }
@@ -123,7 +127,7 @@ public class JavaCalculator {
         btnEquals.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                switch (math_operator){
+                switch (math_operator) {
                     case '+':
                         total2 = total1 + Double.parseDouble(textDisplay.getText());
                         break;
@@ -173,7 +177,8 @@ public class JavaCalculator {
             }
         });
     }
-    private void getOperator(String btnText){
+
+    private void getOperator(String btnText) {
         math_operator = btnText.charAt(0);
         total1 = total1 + Double.parseDouble(textDisplay.getText());
         textDisplay.setText("");
